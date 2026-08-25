@@ -95,3 +95,15 @@ def test_model_reproducibility():
         predictions1,
         predictions2
     )
+def test_single_sample_prediction():
+
+    model, _, _ = create_model_and_data()
+
+    sample = np.array([
+        [5.1, 3.5, 1.4, 0.2]
+    ])
+
+    prediction = model.predict(sample)
+
+    assert prediction.shape == (1,)
+    assert prediction[0] in [0, 1, 2]
